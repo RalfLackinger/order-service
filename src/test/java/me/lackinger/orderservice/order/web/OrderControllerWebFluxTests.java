@@ -29,16 +29,16 @@ class OrderControllerWebFluxTests {
 		given(orderService.submitOrder(orderRequest.isbn(), orderRequest.quantity()))
 				.willReturn(Mono.just(expectedOrder));
 
-		webClient.post()
-		         .uri("/orders/")
-		         .bodyValue(orderRequest)
-		         .exchange()
-		         .expectStatus()
-		         .is2xxSuccessful()
-		         .expectBody(Order.class).value(actualOrder -> {
-			         assertThat(actualOrder).isNotNull();
-			         assertThat(actualOrder.status()).isEqualTo(OrderStatus.REJECTED);
-		         });
+		webClient
+				.post()
+				.uri("/orders")
+				.bodyValue(orderRequest)
+				.exchange()
+				.expectStatus().is2xxSuccessful()
+				.expectBody(Order.class).value(actualOrder -> {
+					assertThat(actualOrder).isNotNull();
+					assertThat(actualOrder.status()).isEqualTo(OrderStatus.REJECTED);
+				});
 	}
 
 }

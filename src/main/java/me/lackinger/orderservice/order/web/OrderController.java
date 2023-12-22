@@ -1,11 +1,12 @@
 package me.lackinger.orderservice.order.web;
 
-import jakarta.validation.Valid;
 import me.lackinger.orderservice.order.domain.Order;
 import me.lackinger.orderservice.order.domain.OrderService;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("orders")
